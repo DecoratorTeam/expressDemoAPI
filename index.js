@@ -31,7 +31,7 @@ db.once('open',() => { mongoose.connection.db.eval('db.loadServerScripts()', fun
   console.log("Successfully connected")});
 
   
-app.get('/GetAllCategories',function(req,res){
+app.get('/',function(req,res){
     categories.getAllCategories(function(err,categories){
 		if (err) 
 			res.send(err);
