@@ -21,14 +21,14 @@ mongoose.connect("mongodb://sravani:sravani123@52.171.192.111:27017/decorator_db
 
 var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open',() => { mongoose.connection.db.eval('db.loadServerScripts()', function(err, result) {
-	if(err)
-	{
-	  console.log(err);
-	}          
-  }); 
-  console.log("Successfully connected")});
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.once('open',() => { mongoose.connection.db.eval('db.loadServerScripts()', function(err, result) {
+// 	if(err)
+// 	{
+// 	  console.log(err);
+// 	}          
+//   }); 
+//   console.log("Successfully connected")});
 
   
 app.get('/',function(req,res){
