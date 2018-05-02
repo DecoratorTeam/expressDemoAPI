@@ -27,6 +27,3 @@ module.exports.getAllCategories = function(callback){
     categories.find(callback);
 }
 
-module.exports.getCategoryById = function(id,callback){
-    categories.findById(id,callback);
-  }
