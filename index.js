@@ -5,8 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 //const port = 3000;
 const port = process.env.PORT || 3000;
-var categories = require('./Models/Categories');
-var orders = require('./Models/Orders');
+var categoryservice = require('./Services/CategoryService');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -31,26 +30,6 @@ db.once('open',() => { mongoose.connection.db.eval('db.loadServerScripts()', fun
   }); 
   console.log("Successfully connected")});
 
-  
-app.get('/',function(req,res){
-    categories.getAllCategories(function(err,categories){
-		if (err) 
-			res.send(err);
-		else
-			res.send(categories);        
-			console.log(categories);    
-	});
-});
-
-app.get('/GetOrderById/:orderID',function(req,res) {
-    orders.getOrderById(req.params.orderID,function(err,orders){
-        console.log(req.params.orderID);
-          if(err)
-          {
-            console.log(err);
-          }          
-          res.json(orders);
-     });
- });
+  app.use(categoryservice);
 
 app.listen(port,() => console.log('server is running on port ' + port));
